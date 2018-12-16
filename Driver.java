@@ -6,7 +6,9 @@ public class Driver {
         System.out.println("##New Instance Test:##");
         System.out.println("######################");
         MyLinkedList list = new MyLinkedList();
+        list.add(1);
+        list.add(4);
         System.out.println(list);
-        System.out.println("This should print: \"[]\"\n");
+        //System.out.println("This should print: \"[]\"\n");
       }
     }
