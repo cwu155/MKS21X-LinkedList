@@ -43,9 +43,15 @@ public class MyLinkedList{
 
     public boolean add(Integer value){
         Node newNode = new Node(value, start, end);
+        Node newEndNode = new Node(value, start, null);
         if (start == null){
           start = newNode;
           end = newNode;
+        } else {
+          Node temp = end;
+          end.setNext(newEndNode);
+          end = end.next();
+          end.setPrev(end.prev());
         }
         length += 1;
         return true;
@@ -57,23 +63,28 @@ public class MyLinkedList{
 
     public String toString(){
       String result = "";
+      int i = 0;
       Node current = start;
-        while (current != null){
-          result += current.getData();
-          current = current.next();
-        }
-      return "[" + result + "]";
+         while (current != null && i < length-2){
+           result += current.getData() + ", ";
+           current = current.next();
+           i++;
+         }
+      return "[" + result + end + "]";
     }
 
-    // private Node getNthNode(int value){
-    //   Node current = start.next();
-    //   for (int i = 0; i < this.size(); i++){
-    //
-    //   }
-    // }
+    public Node getNthNode(int value){
+      Node current = start;
+      int i = 0;
+      while (current != null && i < length-1){
+        current = current.next();
+        i++;
 
+        if (i == value-1){
+          return current.next();
+        }
+      }
+      return current.next();
+    }
 
-
-
-
-}
+    }
