@@ -19,6 +19,6 @@ public class Driver {
       System.out.println(list);
       System.out.println("This should print: \"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\"");
 
-      System.out.println(list.getNthNode(3));
+    
     }
   }

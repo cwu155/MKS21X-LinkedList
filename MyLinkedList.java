@@ -73,7 +73,7 @@ public class MyLinkedList{
       return "[" + result + end + "]";
     }
 
-    public Node getNthNode(int value){
+    private Node getNthNode(int value){
       Node current = start;
       int i = 0;
       while (current != null && i < length-1){
@@ -87,6 +87,14 @@ public class MyLinkedList{
       return current.next();
     }
 
+    public Integer get(int index){
+      return this.getNthNode(index).getData();
+    }
+
+    public Integer set(int index,Integer value){
+      this.getNthNode(index).setData(value);
+      return this.getNthNode(index).getData();
+    }
 
 
     }
