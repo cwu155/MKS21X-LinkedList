@@ -72,18 +72,18 @@ public class MyLinkedList{
       return "[" + result + "]";
     }
 
-    private Node getNthNode(int value){
+    private Node getNthNode(int index){
       Node current = start;
       int i = 0;
       while (current != null && i < length-1){
         current = current.next();
         i++;
 
-        if (i == value-1){
-          return current.next();
+        if (i == index){
+          return current;
         }
       }
-      return current.next();
+      return current;
     }
 
     public Integer get(int index){
@@ -125,11 +125,17 @@ public class MyLinkedList{
       Node original = this.getNthNode(index);
       Node originalPrev = this.getNthNode(index-1);
       Node newNode = new Node(value, this.getNthNode(index-1), this.getNthNode(index));
-      newNode.setNext(originalPrev.next());
-      //original.setNext(newNode);
+      original.setPrev(newNode);
       originalPrev.setNext(newNode);
-      System.out.println(getNthNode(9).next());
+    }
 
+    public Integer remove(int index){
+      Node removed = this.getNthNode(index);
+      Node beforeRemoved = this.getNthNode(index-1);
+      Node afterRemoved = this.getNthNode(index+1);
+      beforeRemoved.setNext(afterRemoved);
+      afterRemoved.setPrev(beforeRemoved);
+      return index;
     }
 
 
