@@ -110,5 +110,17 @@ public class MyLinkedList{
       return (count >= 1);
     }
 
+    public int indexOf(Integer value){
+      Node current = start;
+      for (int i = 0; i < length-1; i++){
+        if (current.getData() == value){
+          return i;
+        } else {
+          current = current.next();
+        }
+      }
+      return indexOf(value);
+    }
+
 
     }

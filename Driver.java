@@ -32,5 +32,12 @@ public class Driver {
       System.out.println("##############");
       System.out.println(list.size());
       System.out.println("This should print: 10");
+
+      //Step Eight: indexOf Method
+      System.out.println("########################");
+      System.out.println("##Index of Value Test:##");
+      System.out.println("########################");
+      System.out.println(list.indexOf(0));
+      System.out.println("This should print: 0");
     }
   }
