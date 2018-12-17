@@ -48,7 +48,6 @@ public class MyLinkedList{
           start = newNode;
           end = newNode;
         } else {
-          Node temp = end;
           end.setNext(newEndNode);
           end = end.next();
           end.setPrev(end.prev());
@@ -65,12 +64,12 @@ public class MyLinkedList{
       String result = "";
       int i = 0;
       Node current = start;
-         while (current != null && i < length-2){
+         while (current != null && i < length){
            result += current.getData() + ", ";
            current = current.next();
            i++;
          }
-      return "[" + result + end + "]";
+      return "[" + result + "]";
     }
 
     private Node getNthNode(int value){
@@ -120,6 +119,17 @@ public class MyLinkedList{
         }
       }
       return indexOf(value);
+    }
+
+    public void add(int index,Integer value){
+      Node original = this.getNthNode(index);
+      Node originalPrev = this.getNthNode(index-1);
+      Node newNode = new Node(value, this.getNthNode(index-1), this.getNthNode(index));
+      newNode.setNext(originalPrev.next());
+      //original.setNext(newNode);
+      originalPrev.setNext(newNode);
+      System.out.println(getNthNode(9).next());
+
     }
 
 
