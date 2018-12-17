@@ -19,6 +19,18 @@ public class Driver {
       System.out.println(list);
       System.out.println("This should print: \"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\"");
 
-    
+      //Step Six: Testing the Contains Method
+      System.out.println("##############################");
+      System.out.println("##Checking Containment Test:##");
+      System.out.println("##############################");
+      System.out.println(list.contains(999));
+      System.out.println("This should print: false");
+
+      //Step Seven: Testing the Size Method
+      System.out.println("##############");
+      System.out.println("##Size Test:##");
+      System.out.println("##############");
+      System.out.println(list.size());
+      System.out.println("This should print: 10");
     }
   }

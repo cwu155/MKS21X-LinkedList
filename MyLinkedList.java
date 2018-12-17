@@ -96,5 +96,19 @@ public class MyLinkedList{
       return this.getNthNode(index).getData();
     }
 
+    public boolean contains(Integer value){
+      Node current = start;
+      int count = 0;
+      while (current != null){
+        if (current.getData() == value){
+          count += 1;
+          current = current.next();
+        } else {
+          current = current.next();
+        }
+      }
+      return (count >= 1);
+    }
+
 
     }
