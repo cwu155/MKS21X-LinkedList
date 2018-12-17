@@ -35,6 +35,15 @@ public class Driver {
       System.out.println(list);
       System.out.println("This should print: \"[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]\"");
 
+      Integer a = 3;
+      //Step Five: Remove a value from the list by value
+      System.out.println("#####################################");
+      System.out.println("##Remove a Value by its Value Test:##");
+      System.out.println("#####################################");
+      list.remove(a);
+      System.out.println(list);
+      System.out.println("This should print: \"[0, 1, 2, 3, 4, 5, 6, 7, 8]\"");
+
       //Step Six: Testing the Contains Method
       System.out.println("##############################");
       System.out.println("##Checking Containment Test:##");

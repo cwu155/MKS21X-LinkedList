@@ -79,11 +79,11 @@ public class MyLinkedList{
         current = current.next();
         i++;
 
-        if (i == index){
-          return current;
+        if (i+1 == index){
+          return current.next();
         }
       }
-      return current;
+      return current.next();
     }
 
     public Integer get(int index){
@@ -136,6 +136,11 @@ public class MyLinkedList{
       beforeRemoved.setNext(afterRemoved);
       afterRemoved.setPrev(beforeRemoved);
       return index;
+    }
+
+    public boolean remove(Integer value){
+      this.remove(indexOf(value));
+      return true;
     }
 
 
