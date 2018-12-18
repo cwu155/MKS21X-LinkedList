@@ -145,10 +145,7 @@ public class MyLinkedList{
         System.out.println("Bad index value!");
       } else if (index == 0){
         Node newNode = new Node (value, null, start);
-        Node temp = start;
         start = newNode;
-        start.setNext(temp);
-        start.setPrev(null);
         length += 1;
       } else {
         Node original = this.getNthNode(index);
@@ -161,12 +158,21 @@ public class MyLinkedList{
     }
 
     public Integer remove(int index){
-      Node removed = this.getNthNode(index);
-      Node beforeRemoved = removed.prev();
-      Node afterRemoved = removed.next();
-      beforeRemoved.setNext(afterRemoved);
-      afterRemoved.setPrev(beforeRemoved);
-      return index;
+      Integer removed = this.get(index);
+      if (index > length || index < 0){
+        System.out.println("Bad index value!");
+      } else if (index == 0){
+        start = start.next();
+        length -= 1;
+      } else {
+        Node toRemove = this.getNthNode(index);
+        Node beforeRemove = this.getNthNode(index-1);
+        Node afterRemove = toRemove.next();
+        beforeRemove.setNext(afterRemove);
+        afterRemove.setPrev(beforeRemove);
+        length -= 1;
+      }
+      return removed;
     }
 
     public boolean remove(Integer value){
