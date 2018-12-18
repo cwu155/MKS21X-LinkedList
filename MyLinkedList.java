@@ -128,7 +128,7 @@ public class MyLinkedList{
       for (int i = 0; i < length-1; i++){
         if (current.getData() == value){
           result = i;
-          i = length;
+          return length;
         } else {
           current = current.next();
         }
@@ -176,8 +176,16 @@ public class MyLinkedList{
     }
 
     public boolean remove(Integer value){
-      this.remove(indexOf(value));
-      return true;
+      Node current = start;
+      for (int i = 0; i < length; i++){
+        if (current.getData() == value){
+          this.remove(i);
+          return true;
+        } else {
+          current = current.next();
+        }
+      }
+      return false;
     }
 
 
