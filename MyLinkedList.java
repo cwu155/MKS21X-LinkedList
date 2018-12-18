@@ -64,12 +64,12 @@ public class MyLinkedList{
       String result = "";
       int i = 0;
       Node current = start;
-         while (current != null && i < length){
-           result += current.getData() + " ";
+         while (current != null && i < length-1){
+           result += current.getData() + ", ";
            current = current.next();
            i++;
          }
-      return "[" + result + "]";
+      return "[" + result + end + "]";
     }
 
     private Node getNthNode(int index){
@@ -128,7 +128,7 @@ public class MyLinkedList{
       for (int i = 0; i < length-1; i++){
         if (current.getData() == value){
           result = i;
-          return length;
+          i = length;
         } else {
           current = current.next();
         }
@@ -187,6 +187,17 @@ public class MyLinkedList{
       }
       return false;
     }
+
+    public void extend(MyLinkedList other){
+        //in O(1) runtime, move the elements from other onto the end of this
+        //The size of other is reduced to 0
+        //The size of this is now the combined sizes of both original lists
+        int thisSize = this.size();
+        int otherSize = other.size();
+        Node end = this.end;
+        end.setNext(other.start);
+        thisSize += otherSize;
+      }
 
 
     }
