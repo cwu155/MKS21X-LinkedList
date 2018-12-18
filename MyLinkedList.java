@@ -75,16 +75,7 @@ public class MyLinkedList{
     private Node getNthNode(int index){
       Node current = start;
       Node result = current;
-      //int i = 0;
-      // while (current != null && i < length-1){
-      //   current = current.next();
-      //   i++;
-      //
-      //   if (i+1 == index){
-      //     return current.next();
-      //   }
-      // }
-      // return current.next();
+
       for (int i = 0; i < length; i++){
         if (i == index){
           result = current;
@@ -104,6 +95,11 @@ public class MyLinkedList{
     }
 
     public Integer set(int index,Integer value){
+      if (index >= length || index < 0){
+        System.out.println("Bad index value!");
+        return null;
+      }
+
       try {
       this.getNthNode(index).setData(value);
       return this.getNthNode(index).getData();
@@ -145,12 +141,20 @@ public class MyLinkedList{
     }
 
     public void add(int index, Integer value){
-      Node original = this.getNthNode(index);
-      Node originalPrev = this.getNthNode(index-1);
-      Node newNode = new Node(value, originalPrev, original);
-      original.setPrev(newNode);
-      originalPrev.setNext(newNode);
-      newNode.setNext(newNode);
+      if (index > length || index < 0){
+        System.out.println("Bad index value!");
+      } else if (index == 0){
+        Node newNode = new Node (value, null, start);
+        start.setPrev(newNode);
+        length += 1; // doesn't work
+      } else {
+        Node original = this.getNthNode(index);
+        Node originalPrev = this.getNthNode(index-1);
+        Node newNode = new Node(value, originalPrev, original);
+        original.setPrev(newNode);
+        originalPrev.setNext(newNode);
+        length += 1;
+      }
     }
 
     public Integer remove(int index){
