@@ -145,8 +145,11 @@ public class MyLinkedList{
         System.out.println("Bad index value!");
       } else if (index == 0){
         Node newNode = new Node (value, null, start);
-        start.setPrev(newNode);
-        length += 1; // doesn't work
+        Node temp = start;
+        start = newNode;
+        start.setNext(temp);
+        start.setPrev(null);
+        length += 1;
       } else {
         Node original = this.getNthNode(index);
         Node originalPrev = this.getNthNode(index-1);
