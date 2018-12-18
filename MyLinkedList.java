@@ -65,7 +65,7 @@ public class MyLinkedList{
       int i = 0;
       Node current = start;
          while (current != null && i < length){
-           result += current.getData() + ", ";
+           result += current.getData() + " ";
            current = current.next();
            i++;
          }
@@ -74,25 +74,42 @@ public class MyLinkedList{
 
     private Node getNthNode(int index){
       Node current = start;
-      int i = 0;
-      while (current != null && i < length-1){
-        current = current.next();
-        i++;
-
-        if (i+1 == index){
-          return current.next();
+      Node result = current;
+      //int i = 0;
+      // while (current != null && i < length-1){
+      //   current = current.next();
+      //   i++;
+      //
+      //   if (i+1 == index){
+      //     return current.next();
+      //   }
+      // }
+      // return current.next();
+      for (int i = 0; i < length; i++){
+        if (i == index){
+          result = current;
+        } else {
+          current = current.next();
         }
       }
-      return current.next();
+      return result;
     }
 
     public Integer get(int index){
+      try {
       return this.getNthNode(index).getData();
+      } catch (NullPointerException n) {
+        return null;
+      }
     }
 
     public Integer set(int index,Integer value){
+      try {
       this.getNthNode(index).setData(value);
       return this.getNthNode(index).getData();
+    } catch (NullPointerException n) {
+      return null;
+      }
     }
 
     public boolean contains(Integer value){
@@ -111,28 +128,35 @@ public class MyLinkedList{
 
     public int indexOf(Integer value){
       Node current = start;
+      int result = 0;
       for (int i = 0; i < length-1; i++){
         if (current.getData() == value){
-          return i;
+          result = i;
+          i = length;
         } else {
           current = current.next();
         }
       }
-      return indexOf(value);
+      if (result > 0){
+        return result;
+      } else {
+        return -1;
+      }
     }
 
-    public void add(int index,Integer value){
+    public void add(int index, Integer value){
       Node original = this.getNthNode(index);
       Node originalPrev = this.getNthNode(index-1);
-      Node newNode = new Node(value, this.getNthNode(index-1), this.getNthNode(index));
+      Node newNode = new Node(value, originalPrev, original);
       original.setPrev(newNode);
       originalPrev.setNext(newNode);
+      newNode.setNext(newNode);
     }
 
     public Integer remove(int index){
       Node removed = this.getNthNode(index);
-      Node beforeRemoved = this.getNthNode(index-1);
-      Node afterRemoved = this.getNthNode(index+1);
+      Node beforeRemoved = removed.prev();
+      Node afterRemoved = removed.next();
       beforeRemoved.setNext(afterRemoved);
       afterRemoved.setPrev(beforeRemoved);
       return index;
